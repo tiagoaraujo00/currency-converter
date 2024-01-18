@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.betrybe.trybnb.R
 
-class mainFragmentContainer : Fragment() {
+class MainFragmentContainer : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.main_fragment_layout, container, false)
     }

@@ -10,17 +10,28 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    private val mBottomNavigation: BottomNavigationView by lazy { findViewById(R.id.navigation_bottom_view) }
+    private val mBottomNavigation: BottomNavigationView by lazy {
+        findViewById(
+            R.id.navigation_bottom_view
+        )
+    }
     private val profileFragment = ProfileFragment()
     private val reservationFragment = ReservationFragment()
     private val createReservationFragment = CreateReservationFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        super.onCreate(
+            savedInstanceState
+        )
+        setContentView(
+            R.layout.activity_main
+        )
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.main_fragment_container, reservationFragment)
+            .replace(
+                R.id.main_fragment_container,
+                reservationFragment
+            )
             .commit()
 
         mBottomNavigation.setOnItemSelectedListener {
@@ -32,12 +43,18 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.create_reservation_menu_item -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_fragment_container, createReservationFragment)
+                        .replace(
+                            R.id.main_fragment_container,
+                            createReservationFragment
+                        )
                         .commit()
                 }
                 R.id.profile_menu_tem -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_fragment_container, profileFragment)
+                        .replace(
+                            R.id.main_fragment_container,
+                            profileFragment
+                        )
                         .commit()
                 }
             }
