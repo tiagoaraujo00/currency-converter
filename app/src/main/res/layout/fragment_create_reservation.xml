@@ -87,7 +87,7 @@
                 android:layout_gravity="start"
                 android:gravity="start|top"
                 android:inputType="textMultiLine"
-                android:maxLines="3" />
+                android:lines="3" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
