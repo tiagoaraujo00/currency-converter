@@ -58,7 +58,7 @@ class CreateReservationFragment : Fragment() {
         additionalNeedsLayout.error = if (
             additionalNeeds
                 .isEmpty()
-            ) {
+        ) {
             "O campo Necessidades Adicionais é obrigatório"
         } else {
             null

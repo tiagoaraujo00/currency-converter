@@ -31,7 +31,8 @@ class ListItemAdapter(private val itemList: List<Bookingids>) : Adapter<ListItem
     }
 
     override fun onBindViewHolder(holder: BookingIdViewHolder, position: Int) {
-        holder.nameItemReservation.text = itemList[position].firstname
+        holder.nameItemReservation.text = itemList[position]
+            .firstname + " " + itemList[position].lastname
         holder.checkinItemReservation.text = itemList[position].bookingdates.checkin
         holder.checkoutItemReservation.text = itemList[position].bookingdates.checkout
         holder.additionalNeedsItemReservation.text = itemList[position].additionalneeds

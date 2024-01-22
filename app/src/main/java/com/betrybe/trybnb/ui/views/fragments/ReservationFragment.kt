@@ -1,7 +1,6 @@
 package com.betrybe.trybnb.ui.views.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.betrybe.trybnb.R
 import com.betrybe.trybnb.data.api.BookingServiceApi
+import com.betrybe.trybnb.data.models.Bookingids
+import com.betrybe.trybnb.ui.adapters.ListItemAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,16 +29,26 @@ class ReservationFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_reservation, container, false)
 
         CoroutineScope(Dispatchers.IO).launch {
-
             val bookingResponse = apiService.getBooking()
-            val bookingIds = bookingResponse.body()?.sortedBy { it.bookingid }?.take(3)
-            bookingIds?.forEach { it ->
-                Log.i("Ids", it.bookingid.toString())
+            val bookingIds = bookingResponse.body()?.sortedBy { it.bookingid }?.take("3".toInt())
+            val bookingDetailsList = mutableListOf<Bookingids>()
+            bookingIds?.forEach { booking ->
+                val bookingIdResponse = apiService
+                    .getBookingId(
+                        "application/json",
+                        booking.bookingid.toString()
+                    )
+                val bookingDetails = bookingIdResponse.body()
+                if (bookingDetails != null) {
+                    bookingDetailsList.add(bookingDetails)
+                }
             }
             withContext(Dispatchers.Main) {
-                // val listItemAdapter = ListItemAdapter()
-                // mRecyclerView.adapter = listItemAdapter
-                // listItemAdapter.notifyDataBaseChanged()
+                val listItemAdapter = ListItemAdapter(bookingDetailsList)
+                mRecyclerView = view.findViewById(R.id.reservation_recycler_view)
+                mRecyclerView.layoutManager = LinearLayoutManager(context)
+                mRecyclerView.adapter = listItemAdapter
+                listItemAdapter.notifyDataSetChanged()
             }
         }
         return view
@@ -45,7 +56,5 @@ class ReservationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mRecyclerView = view.findViewById(R.id.reservation_recycler_view)
-        mRecyclerView.layoutManager = LinearLayoutManager(context)
     }
 }
