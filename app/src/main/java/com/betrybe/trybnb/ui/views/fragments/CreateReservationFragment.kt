@@ -12,7 +12,7 @@ import com.google.android.material.textfield.TextInputLayout
 class CreateReservationFragment : Fragment() {
 
     private lateinit var firstNameLayout: TextInputLayout
-    private lateinit var secondNameLayout : TextInputLayout
+    private lateinit var secondNameLayout: TextInputLayout
     private lateinit var checkinLayout: TextInputLayout
     private lateinit var checkoutLayout: TextInputLayout
     private lateinit var additionalNeedsLayout: TextInputLayout
@@ -55,8 +55,14 @@ class CreateReservationFragment : Fragment() {
         secondNameLayout.error = if (lastName.isEmpty()) "O campo Sobrenome é obrigatório" else null
         checkinLayout.error = if (checkin.isEmpty()) "O campo Checkin é obrigatório" else null
         checkoutLayout.error = if (checkout.isEmpty()) "O campo Checkout é obrigatório" else null
-        additionalNeedsLayout
-            .error = if (additionalNeeds.isEmpty()) "O campo Necessidades Adicionais é obrigatório" else null
+        additionalNeedsLayout.error = if (
+            additionalNeeds
+                .isEmpty()
+            ) {
+            "O campo Necessidades Adicionais é obrigatório"
+        } else {
+            null
+        }
         totalPriceLayout.error = if (price.isEmpty()) "O campo Preço Total é obrigatório" else null
     }
 }

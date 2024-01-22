@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object BookingServiceApi {
-    val instance : ApiService by lazy {
+    val instance: ApiService by lazy {
 
         val BASE_URL = "https://restful-booker.herokuapp.com"
 

@@ -1,5 +1,5 @@
 package com.betrybe.trybnb.data.models
 
-data class Bookings (
+data class Bookings(
     val bookingid: Int
 )

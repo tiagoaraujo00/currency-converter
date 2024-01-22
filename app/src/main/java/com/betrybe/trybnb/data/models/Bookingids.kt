@@ -6,5 +6,5 @@ data class Bookingids(
     val totalprice: Int,
     val depositpaid: Boolean,
     val bookingdates: BookingDatesData,
-    val additionalneeds: String,
+    val additionalneeds: String
 )
